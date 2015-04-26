@@ -1,0 +1,35 @@
+/* Portrait */
+@media only screen
+and (min-device-width: 0px)
+and (max-device-width: 760px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
+    .mobilePortrait {
+        visibility: hidden;
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width: 0px)
+and (max-device-width: 760px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) {
+    .mobileLandscape {
+        visibility: hidden;
+    }
+}
+
+.city {
+    text-align: center;
+}
+
+.title {
+    color: orange;
+}
+
+.pad {
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-left: 50px;
+}

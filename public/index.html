@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html ng-app="conference">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>WTH: Conference</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/responsive.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6K0lfOXQbVuatvK1NAxpng5eaUBBcd6M">
+    </script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+<body ng-controller="TopTenController as ttc">
+    <div class="navbar navbar-brand well well-lg">
+        <a href="/WTH/public/index.html" class="title">WTH: Conference Booking Planner</a>
+        <div class="container form-inline pad">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 text-center" ng-show="show">
+                    <h2>When is Your Conference</h2>
+                </div>
+            </div>
+            <form ng-submit="checkTimes()" ng-show="show">
+                <div class="row text-center pad">
+                    Start Date:
+                    <div class="col-md-12">
+                        <select class="form-control" ng-model="form.startMonth" id="monthStart" onchange="" size="1">
+                            <option value="0">Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select class="form-control" ng-model="form.startDay" name="day" id="dayStart" onchange="" size="1">
+                            <option value="0">Day</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <select class="form-control" name="year" ng-model="form.startYear" id="yearStart" onchange="" size="1">
+                            <option value="0">Year</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row text-center pad">
+                    End Date:
+                    <div class="col-md-12">
+                        <select class="form-control" ng-model="form.endMonth" id="monthEnd" onchange="" size="1">
+                            <option value="0">Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select class="form-control" ng-model="form.endDay" name="day" id="dayEnd" onchange="" size="1">
+                            <option value="0">Day</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <select class="form-control" name="year" ng-model="form.endYear" id="yearEnd" onchange="" size="1">
+                            <option value="0">Year</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row text-center pad">
+                    Origin City:
+                    <div class="col-md-12">
+                        <input type="text" ng-model="form.city" placeholder="Boston">
+                    </div>
+                </div>
+                <div class="row text-center pad">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+            </form>
+            <div ng-hide="show">
+                <div class="row">
+                    <div class="col-md-7 col-xs-12">
+                        <h3 class="text-center">Top 10 Destinations</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>Airfare Cost</th>
+                                    <th>Total Hotel Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="datum in data | limitTo:10">
+                                    <td>{{datum.destination}}</td>
+                                    <td>{{datum.price | currency}}</td>
+                                    <td>{{datum.cheapestHotel | currency}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-5 col-xs-0">
+                        <iframe
+                                width="600"
+                                height="450"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC6K0lfOXQbVuatvK1NAxpng5eaUBBcd6M
+                                    &q=Boston+MA&zoom=10">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="row pad text-center">
+                    Sign up to Receive Updates
+                    <div class="col-md-12 pad">
+                        <form class="form-inline" ng-submit="emptyPhoneForm()">
+                            <input type="tel" name="usrtel" ng-model="formPhone.num" placeholder="(xxx) xxx-xxxx">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
